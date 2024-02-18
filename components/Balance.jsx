@@ -1,10 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { getFlowBalance } from "../lib/flow/tx";
+import { useRecoilValue } from "recoil";
+import { userAddress } from "../recoil/recoil_states";
 
 const Balance = () => {
   const [bot, setBot] = useState(0);
   const [userBalance, setUserBalance] = useState(0);
+  const useradd = useRecoilValue(userAddress);
   useEffect(() => {
     getFlowBalance("0x254cc842174ec9d4").then((res) => {
       setBot(Number (res).toFixed(3));
@@ -12,6 +15,7 @@ const Balance = () => {
     getFlowBalance("0x3f6d0a02d7aa2baa").then((res) => {
       setUserBalance(Number (res).toFixed(3));
     });
+    console.log(useradd);
   }, []);
 
   return (

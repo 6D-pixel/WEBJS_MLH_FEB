@@ -4,7 +4,11 @@ import { Button } from "./ui/button";
 //flow
 import { authenticate, unauthenticate, currentUser} from "@onflow/fcl";
 import '@/lib/flow/config';
+//recoil
+import { useRecoilState } from "recoil";
+import { userAddress } from "@/recoil/recoil_states";
 const Navbar = () => {
+  const [useraddress , setUseraddress] = useRecoilState(userAddress)
   const [user, setUser] = useState({
     loggedIn: false,
     addr: null,
@@ -12,6 +16,9 @@ const Navbar = () => {
 
   useEffect(() => {
     currentUser.subscribe(setUser);
+    if (user.loggedIn) {
+      setUseraddress(user.addr);
+    }
   }, []);
 
   async function login() {
@@ -25,7 +32,7 @@ const Navbar = () => {
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="" className="flex items-center space-x-3 rtl:space-x-reverse">
           <img
-            src="https://flowbite.com/docs/images/logo.svg"
+            src="xo.png"
             className="h-8"
             alt="Flowbite Logo"
           />

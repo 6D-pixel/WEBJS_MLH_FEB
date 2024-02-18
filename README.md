@@ -17,20 +17,14 @@ bun dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## steps
+
 godaddy domain name:
+
 - cybernest
 - CodePulse.biz
 
-FLOW ideas:
-- layer 1 block chain 
-- can create games with it 
-    - casino
-    - some simple game
-- storage 
-- social media
-- flow test net faucet
-- beat the master tic tac to and get reward
+##FLOW:
 
-flow wallet 
+- tic tac toe game on flow blockchain
+- wallet flow reference wallet
 
-https://flow-view-source.com/testnet/account/0x254cc842174ec9d4
