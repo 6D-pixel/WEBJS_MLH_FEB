@@ -1,24 +1,28 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { Button } from "./ui/button";
+//flow
 import * as fcl from "@onflow/fcl";
 import * as t from "@onflow/types";
-
+import { authenticate, unauthenticate, currentUser} from "@onflow/fcl";
+import '@/lib/flow/config';
 const Navbar = () => {
-  const [user, setUser] = useState(null);
-  const [connected, setConnected] = useState(false);
-  useEffect(() => fcl.currentUser().subscribe(setUser), []);
-  // fcl.config({
-  //   // Testnet
-  //    "discovery.wallet": "https://fcl-discovery.onflow.org/testnet/authn",
-  // })
-  const handleConnect = async () => {
-    const wallet = await fcl.discovery();
-    // Connect to the selected wallet
-    await fcl.connect(wallet);
-    setConnected(true);
-  };
+  const [user, setUser] = useState({
+    loggedIn: false,
+    addr: null,
+  });
 
+  useEffect(() => {
+    currentUser.subscribe(setUser);
+  }, []);
+
+  async function login() {
+    await authenticate();
+    console.log(user);
+  }
+  async function logout() {
+    unauthenticate();
+  }
   return (
     <nav className="bg-violet-200 border-gray-200 dark:bg-gray-900">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -33,8 +37,7 @@ const Navbar = () => {
           </span>
         </a>
         <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-          <Button onClick={handleConnect}>connect</Button>
-
+          {user.loggedIn?<Button onClick={logout}>{user.addr}</Button>:<Button onClick={login}>connect</Button>}
           <button
             data-collapse-toggle="navbar-cta"
             type="button"
