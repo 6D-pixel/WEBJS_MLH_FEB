@@ -2,8 +2,6 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 //flow
-import * as fcl from "@onflow/fcl";
-import * as t from "@onflow/types";
 import { authenticate, unauthenticate, currentUser} from "@onflow/fcl";
 import '@/lib/flow/config';
 const Navbar = () => {
@@ -18,7 +16,6 @@ const Navbar = () => {
 
   async function login() {
     await authenticate();
-    console.log(user);
   }
   async function logout() {
     unauthenticate();
@@ -37,7 +34,7 @@ const Navbar = () => {
           </span>
         </a>
         <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-          {user.loggedIn?<Button onClick={logout}>{user.addr}</Button>:<Button onClick={login}>connect</Button>}
+          {user.loggedIn?<Button onClick={logout}>{user.addr.substring(0, 6)}.. Logout</Button>:<Button onClick={login}>connect</Button>}
           <button
             data-collapse-toggle="navbar-cta"
             type="button"

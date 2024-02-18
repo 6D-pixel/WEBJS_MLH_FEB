@@ -76,7 +76,7 @@ const TicTacToe = () => {
       <div>
         {winner === "X" ? (
           <center>
-            <Button className="bg-violet-500 mt-5">get token</Button>
+            <Button onClick={() => window.location.reload()} className="bg-violet-500 mt-5">get token</Button>
           </center>
         ) : (
           <center>
