@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { sendFlow } from "@/lib/flow/tx";
 
 const TicTacToe = () => {
   const [board, setBoard] = useState(Array(9).fill(null));
@@ -48,7 +49,7 @@ const TicTacToe = () => {
 
   const winner = calculateWinner(board);
   const status = winner
-    ? `Winner: ${winner}`
+    ? `You won humans are better`
     : `Next player: ${isXNext ? "X" : "O"}`;
 
   return (
