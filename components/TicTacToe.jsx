@@ -1,11 +1,14 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { sendFlow } from "@/lib/flow/tx";
+import { sendTokens } from "@/lib/flow/tx";
 
 const TicTacToe = () => {
   const [board, setBoard] = useState(Array(9).fill(null));
   const [isXNext, setIsXNext] = useState(true);
+
+  const botAddress = "0x254cc842174ec9d4";
+  const userAddress = "0x3f6d0a02d7aa2baa";
 
   const handleClick = (index) => {
     if (board[index] || calculateWinner(board)) {
@@ -48,14 +51,24 @@ const TicTacToe = () => {
   );
 
   const winner = calculateWinner(board);
-  const status = winner
-    ? `You won humans are better`
-    : `Next player: ${isXNext ? "X" : "O"}`;
+  let message;
+  
+    // ? `You won, Humans are better`
+    // : `Next player: ${isXNext ? "X" : "O"}`;
+    if(winner === "X"){
+      message = `won, I will save humanity`
+    }
+    else if(winner === "O"){
+       message = `haha... I will rule humans`
+    }
+    else{
+      message = `your turn 'X' `
+    }
 
   return (
     <div>
-      <div className="status text-center mt-5 text-lg font-semibold">
-        {status}
+      <div className="status text-center mt-5 text-lg font-mono">
+        {message}
       </div>
       <div className="flex justify-center gap-1">
         <div className="">
@@ -77,7 +90,7 @@ const TicTacToe = () => {
       <div>
         {winner === "X" ? (
           <center>
-            <Button onClick={() => window.location.reload()} className="bg-violet-500 mt-5">get token</Button>
+            <Button onClick={()=>sendTokens(botAddress, userAddress,10)} className="bg-violet-500 mt-5">get token</Button>
           </center>
         ) : (
           <center>
