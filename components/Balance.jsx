@@ -10,10 +10,10 @@ const Balance = () => {
   const useradd = useRecoilValue(userAddress);
   useEffect(() => {
     getFlowBalance("0x254cc842174ec9d4").then((res) => {
-      setBot(Number (res).toFixed(3));
+      setBot(Number(res).toFixed(3));
     });
     getFlowBalance("0x3f6d0a02d7aa2baa").then((res) => {
-      setUserBalance(Number (res).toFixed(3));
+      setUserBalance(Number(res).toFixed(3));
     });
     console.log(useradd);
   }, []);
@@ -27,9 +27,7 @@ const Balance = () => {
         </div>
         <div>
           <div className="text-center text-blue-500">YOU</div>
-          <div className="text-center text-blue-500">
-            {userBalance}
-          </div>
+          <div className="text-center text-blue-500">{userBalance}</div>
         </div>
       </div>
     </div>

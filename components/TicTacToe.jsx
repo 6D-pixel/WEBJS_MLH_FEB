@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { sendTokens } from "@/lib/flow/tx";
+import { sendFlow } from "@/lib/flow/tx";
 
 const TicTacToe = () => {
   const [board, setBoard] = useState(Array(9).fill(null));
@@ -90,7 +90,7 @@ const TicTacToe = () => {
       <div>
         {winner === "X" ? (
           <center>
-            <Button onClick={()=>sendTokens(botAddress, userAddress,10)} className="bg-violet-500 mt-5">get token</Button>
+            <Button onClick={sendFlow} className="bg-violet-500 mt-5">get token</Button>
           </center>
         ) : (
           <center>
